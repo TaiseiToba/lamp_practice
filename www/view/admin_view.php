@@ -1,3 +1,7 @@
+<?php
+// クリックジャッキング対策
+  header('X-FRAME-OPTIONS: DENY');
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -43,7 +47,7 @@
           <option value="close">非公開</option>
         </select>
       </div>
-      
+      <input type="hidden" name="token" value="<?php print $token; ?>">
       <input type="submit" value="商品追加" class="btn btn-primary">
     </form>
 
@@ -74,6 +78,7 @@
                 </div>
                 <input type="submit" value="変更" class="btn btn-secondary">
                 <input type="hidden" name="item_id" value="<?php print(h($item['item_id'])); ?>">
+                <input type="hidden" name="token" value="<?php print $token; ?>">
               </form>
             </td>
             <td>
@@ -87,11 +92,13 @@
                   <input type="hidden" name="changes_to" value="open">
                 <?php } ?>
                 <input type="hidden" name="item_id" value="<?php print(h($item['item_id'])); ?>">
+                <input type="hidden" name="token" value="<?php print $token; ?>">
               </form>
 
               <form method="post" action="admin_delete_item.php">
                 <input type="submit" value="削除" class="btn btn-danger delete">
                 <input type="hidden" name="item_id" value="<?php print(h($item['item_id'])); ?>">
+                <input type="hidden" name="token" value="<?php print $token; ?>">
               </form>
 
             </td>
